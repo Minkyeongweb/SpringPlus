@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
+import jakarta.validation.constraints.NotBlank;
 import lombok.extern.slf4j.Slf4j;
 import org.example.expert.domain.common.exception.ServerException;
 import org.example.expert.domain.user.enums.UserRole;
@@ -34,7 +35,7 @@ public class JwtUtil {
         key = Keys.hmacShaKeyFor(bytes);
     }
 
-    public String createToken(Long userId, String email, UserRole userRole) {
+    public String createToken(Long userId, String email, UserRole userRole, @NotBlank String nickname) {
         Date date = new Date();
 
         return BEARER_PREFIX +
